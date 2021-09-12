@@ -1,12 +1,14 @@
 [Unit]
-Description=Fan control service
-After=multi-user.target
+Description=Service for pifancontrol
+StartLimitIntervalSec=0
 
 [Service]
+Type=exec
 User=pi
-Type=idle
-ExecStart=//usr/bin/python3 /home/pi/fan_control/fan_control.py
+WorkingDirectory=/home/pi/fan_control
+ExecStart=/home/pi/fan_control/fan_control.py
 Restart=on-failure
+RestartSec=10
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=multi_user.target

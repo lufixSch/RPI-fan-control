@@ -13,7 +13,7 @@ PWM_FREQ = 25           # [kHz] 25kHz for Noctua PWM control
 # Configurable temperature and fan speed
 MIN_TEMP = 40
 MIN_TEMP_DEAD_BAND = 5
-MAX_TEMP = 70
+MAX_TEMP = 60
 FAN_LOW = 1
 FAN_HIGH = 100
 FAN_OFF = 0
@@ -23,12 +23,13 @@ FAN_MAX = 100
 def getCpuTemperature():
     """Get CPU's temperature"""
     res = os.popen('cat /sys/class/thermal/thermal_zone0/temp').readline()
-
+    print(f"Temperatur is {float(res)/1000}")
     return float(res)/1000
 
 
 def setFanSpeed(speed):
     """Set fan speed"""
+    print(f"set Fan Speed to {speed}")
     fan.start(speed)
     return()
 
